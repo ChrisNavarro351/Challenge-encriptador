@@ -8,7 +8,7 @@ function encriptar(){
 
 
     if (!esMinusculaSinTilde(texto)) {
-        alert("El texto debe estar en minúsculas y no contener tildes.");
+        alert("El texto debe estar en minúsculas y no contener tildes ni caracteres especiales.");
         return;
     }
 
@@ -39,6 +39,7 @@ function esMinusculaSinTilde(texto) {
 
 
     let textoNormalizado = texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  
     return texto === textoNormalizado;
 }
 
@@ -51,7 +52,7 @@ function desencriptar() {
 
 
     if (!esMinusculaSinTilde(texto)) {
-        alert("El texto debe estar en minúsculas y no contener tildes.");
+        alert("El texto debe estar en minúsculas y no contener tildes ni caracteres especiales.");
         return;
     }
 
@@ -81,6 +82,11 @@ function esMinusculaSinTilde(texto) {
     }
 
     let textoNormalizado = texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    let caracteresEspeciales = /[^a-z\s]/g;
+
+    if(caracteresEspeciales.test(textoNormalizado)){
+        return false;
+    }
     return texto === textoNormalizado;
 }
 
